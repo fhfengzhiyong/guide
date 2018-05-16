@@ -1,0 +1,7 @@
+profiles: dev
+spring:
+  datasource:
+    url: jdbc:mysql://localhost/guide
+    driver-class-name: com.mysql.jdbc.Driver
+    password: 1234
+    username: root
