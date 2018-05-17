@@ -1,10 +1,10 @@
 package com.straw.guide.service.impl;
 
-import com.straw.guide.common.CrudServiceImpl;
-import com.straw.guide.model.VersionEntity;
 import com.straw.guide.repository.VersionRepository;
 import com.straw.guide.service.VersionService;
 import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
 
 /**
  * @author straw(fengzy)
@@ -13,6 +13,9 @@ import org.springframework.stereotype.Service;
  */
 @Service("versionService")
 public class VersionServiceImpl  implements VersionService {
-
-
+    @Resource
+    VersionRepository versionRepository;
+    public void test(){
+        versionRepository.findById("");
+    }
 }

@@ -1,6 +1,5 @@
 package com.straw.guide.controller;
 
-import com.straw.guide.model.VersionEntity;
 import com.straw.guide.service.VersionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;

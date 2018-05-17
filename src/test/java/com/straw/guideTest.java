@@ -11,6 +11,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import com.straw.guide.Application;
 
+import java.util.Optional;
+
 /**
  * @author straw(fengzy)
  * @description
@@ -28,5 +30,10 @@ public class guideTest {
         Iterable<VersionEntity> all = versionRepository.findAll();
         all.forEach((k) -> System.out.println(k.getName()));
         all.forEach((k) -> System.out.println(k.getName()));
+    }
+    @Test
+    public void test1(){
+        Optional<VersionEntity> entity = versionRepository.findById("1");
+        System.out.println(entity.get().getName());
     }
 }
