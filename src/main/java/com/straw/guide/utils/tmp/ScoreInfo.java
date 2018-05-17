@@ -40,9 +40,9 @@ public class ScoreInfo {
     private Double zsnf2014;
     // 专业最低分
     private Double zyzdf2014;
-    //专业类别
+    //专业类别category
     private String zylb;
-    //学科
+    //学科subject
     private String xk;
     //省份
     private String sf;
