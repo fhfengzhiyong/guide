@@ -16,6 +16,7 @@ public class AdmissionCriteriaEntity {
     private Integer lowestSrore;
     private String batch;
     private Integer headCount;
+    private String specialtyId;
 
     @Id
     @Column(name = "id")
@@ -83,5 +84,15 @@ public class AdmissionCriteriaEntity {
     public int hashCode() {
 
         return Objects.hash(id, year, lowestSrore, batch, headCount);
+    }
+
+    @Basic
+    @Column(name = "specialty_id")
+    public String getSpecialtyId() {
+        return specialtyId;
+    }
+
+    public void setSpecialtyId(String specialtyId) {
+        this.specialtyId = specialtyId;
     }
 }

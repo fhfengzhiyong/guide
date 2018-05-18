@@ -6,7 +6,7 @@ import java.util.Objects;
 /**
  * @author straw(fengzy)
  * @description
- * @date 5/17/2018
+ * @date {DATE}
  */
 @Entity
 @Table(name = "l_school", schema = "guide", catalog = "")
@@ -18,6 +18,7 @@ public class SchoolEntity {
     private String region;
     private Integer star;
     private String describe;
+    private String level;
 
     @Id
     @Column(name = "id")
@@ -40,7 +41,7 @@ public class SchoolEntity {
     }
 
     @Basic
-    @Column(name = "province")
+    @Column(name = "province_")
     public String getProvince() {
         return province;
     }
@@ -50,7 +51,7 @@ public class SchoolEntity {
     }
 
     @Basic
-    @Column(name = "city")
+    @Column(name = "city_")
     public String getCity() {
         return city;
     }
@@ -60,7 +61,7 @@ public class SchoolEntity {
     }
 
     @Basic
-    @Column(name = "region")
+    @Column(name = "region_")
     public String getRegion() {
         return region;
     }
@@ -70,7 +71,7 @@ public class SchoolEntity {
     }
 
     @Basic
-    @Column(name = "star")
+    @Column(name = "star_")
     public Integer getStar() {
         return star;
     }
@@ -80,13 +81,23 @@ public class SchoolEntity {
     }
 
     @Basic
-    @Column(name = "describe")
+    @Column(name = "describe_")
     public String getDescribe() {
         return describe;
     }
 
     public void setDescribe(String describe) {
         this.describe = describe;
+    }
+
+    @Basic
+    @Column(name = "level_")
+    public String getLevel() {
+        return level;
+    }
+
+    public void setLevel(String level) {
+        this.level = level;
     }
 
     @Override
@@ -100,12 +111,13 @@ public class SchoolEntity {
                 Objects.equals(city, that.city) &&
                 Objects.equals(region, that.region) &&
                 Objects.equals(star, that.star) &&
-                Objects.equals(describe, that.describe);
+                Objects.equals(describe, that.describe) &&
+                Objects.equals(level, that.level);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(id, schoolName, province, city, region, star, describe);
+        return Objects.hash(id, schoolName, province, city, region, star, describe, level);
     }
 }

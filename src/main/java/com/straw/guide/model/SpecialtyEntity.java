@@ -16,6 +16,7 @@ public class SpecialtyEntity {
     private String category;
     private String specialtyName;
     private String type;
+    private String schoolId;
 
     @Id
     @Column(name = "id")
@@ -83,5 +84,15 @@ public class SpecialtyEntity {
     public int hashCode() {
 
         return Objects.hash(id, subject, category, specialtyName, type);
+    }
+
+    @Basic
+    @Column(name = "school_id")
+    public String getSchoolId() {
+        return schoolId;
+    }
+
+    public void setSchoolId(String schoolId) {
+        this.schoolId = schoolId;
     }
 }

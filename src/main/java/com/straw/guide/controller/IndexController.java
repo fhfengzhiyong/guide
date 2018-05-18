@@ -21,8 +21,9 @@ public class IndexController {
     UserRepository userRepository;
     @Autowired
     VersionService versionService;
+
     @RequestMapping("/index")
-    public  String Index(){
+    public String Index() {
         Optional<UserEntity> user = userRepository.findById("1");
         System.out.println(user.get().getNickName());
         return "Hello!";

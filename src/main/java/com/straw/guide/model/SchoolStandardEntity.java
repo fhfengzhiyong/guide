@@ -6,7 +6,7 @@ import java.util.Objects;
 /**
  * @author straw(fengzy)
  * @description
- * @date 5/17/2018
+ * @date {DATE}
  */
 @Entity
 @Table(name = "l_school_standard", schema = "guide", catalog = "")
@@ -14,6 +14,8 @@ public class SchoolStandardEntity {
     private String id;
     private Integer year;
     private Integer lowestScore;
+    private Integer headCount;
+    private String schoolId;
 
     @Id
     @Column(name = "id")
@@ -45,6 +47,16 @@ public class SchoolStandardEntity {
         this.lowestScore = lowestScore;
     }
 
+    @Basic
+    @Column(name = "head_count")
+    public Integer getHeadCount() {
+        return headCount;
+    }
+
+    public void setHeadCount(Integer headCount) {
+        this.headCount = headCount;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -52,12 +64,23 @@ public class SchoolStandardEntity {
         SchoolStandardEntity that = (SchoolStandardEntity) o;
         return Objects.equals(id, that.id) &&
                 Objects.equals(year, that.year) &&
-                Objects.equals(lowestScore, that.lowestScore);
+                Objects.equals(lowestScore, that.lowestScore) &&
+                Objects.equals(headCount, that.headCount);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(id, year, lowestScore);
+        return Objects.hash(id, year, lowestScore, headCount);
+    }
+
+    @Basic
+    @Column(name = "school_id")
+    public String getSchoolId() {
+        return schoolId;
+    }
+
+    public void setSchoolId(String schoolId) {
+        this.schoolId = schoolId;
     }
 }

@@ -1,12 +1,12 @@
 package com.straw;
 
 import com.straw.guide.Application;
+import com.straw.guide.model.SchoolEntity;
+import com.straw.guide.repository.SchoolRepository;
 import com.straw.guide.service.SchoolService;
 import com.straw.guide.utils.tmp.ScoreInfo;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -15,21 +15,35 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * @author straw(fengzy)
  * @description 导入Excel
  * @date 5/17/2018
  */
-//@SpringBootTest(classes = Application.class)
-//@RunWith(SpringRunner.class)
+@SpringBootTest(classes = Application.class)
+@RunWith(SpringRunner.class)
 public class MetadataImport {
-    // @Autowired
+    @Autowired
     SchoolService schoolService;
+    @Autowired
+    SchoolRepository schoolRepository;
     String xlsPath = "d://lnfs.xlsx";
+
+    @Test
+    public void test1() {
+        SchoolEntity schoolEntity = schoolEntity = new SchoolEntity();
+        schoolEntity.setId(UUID.randomUUID().toString());
+        schoolEntity.setSchoolName("北京大学");
+        schoolEntity.setRegion("华北");
+        schoolEntity.setProvince("北京");
+        schoolEntity.setStar(0);
+        schoolRepository.save(schoolEntity);
+
+    }
 
     @Test
     public void importDae() {
@@ -73,7 +87,11 @@ public class MetadataImport {
                     info.setPc(r.getCell(6).getStringCellValue());
                 }
                 if (r.getCell(7) != null) {
-                    info.setXxcc(r.getCell(7).getStringCellValue());
+                    try {
+                        info.setXxcc(r.getCell(7).getStringCellValue());
+                    } catch (Exception e) {
+                        info.setXxcc("" + (r.getCell(7).getNumericCellValue()));
+                    }
                 }
                 if (r.getCell(8) != null) {
                     info.setZy(r.getCell(8).getStringCellValue());
@@ -114,9 +132,9 @@ public class MetadataImport {
                 if (r.getCell(20) != null) {
                     info.setSfdl(r.getCell(20).getStringCellValue());
                 }
-                System.out.println(info);
+                System.out.println("第行：" + r.getRowNum());
                 temp.add(info);
-                if (r.getRowNum() >= 10) {
+                if (r.getRowNum() >= 200) {
                     break;
                 }
             }
