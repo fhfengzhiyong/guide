@@ -8,10 +8,12 @@ import com.straw.guide.repository.*;
 import com.straw.guide.service.SchoolService;
 import com.straw.guide.utils.tmp.ScoreInfo;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 /**
@@ -147,5 +149,11 @@ public class SchoolServiceImpl implements SchoolService {
                 admissionCriteriaRepository.save(admissionCriteriaEntity2014);
             }
         }
+    }
+
+    @Override
+    public Page<SchoolEntity> queryByParams(Map<String, String> map) {
+        List schoolRepository.findByParams(map);
+        return null;
     }
 }

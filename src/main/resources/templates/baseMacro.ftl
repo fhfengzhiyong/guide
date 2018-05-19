@@ -14,7 +14,7 @@
 <div>
     <ul class="layui-nav layui-bg-green ">
         <li class="layui-nav-item"><a href="">性格测试</a></li>
-        <li class="layui-nav-item layui-this layui-col-md-offset5"><a href="">产品</a></li>
+        <li class="layui-nav-item layui-this layui-col-md-offset5"><a href="">大学</a></li>
         <li class="layui-nav-item"><a href="">大数据</a></li>
         <li class="layui-nav-item">
             <a href="javascript:;">解决方案</a>
