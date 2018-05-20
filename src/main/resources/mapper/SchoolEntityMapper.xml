@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.straw.guide.mapper.SchoolEntityMapper">
+  <resultMap id="BaseResultMap" type="com.straw.guide.model.SchoolEntity">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="school_name" jdbcType="VARCHAR" property="schoolName" />
+    <result column="province_" jdbcType="VARCHAR" property="province" />
+    <result column="city_" jdbcType="VARCHAR" property="city" />
+    <result column="region_" jdbcType="VARCHAR" property="region" />
+    <result column="star_" jdbcType="INTEGER" property="star" />
+    <result column="level_" jdbcType="VARCHAR" property="level" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.straw.guide.model.SchoolEntity">
+    <result column="describe_" jdbcType="LONGVARCHAR" property="describe" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, school_name, province_, city_, region_, star_, level_
+  </sql>
+  <sql id="Blob_Column_List">
+    describe_
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from l_school
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from l_school
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.straw.guide.model.SchoolEntity">
+    insert into l_school (id, school_name, province_, 
+      city_, region_, star_, 
+      level_, describe_)
+    values (#{id,jdbcType=VARCHAR}, #{schoolName,jdbcType=VARCHAR}, #{province,jdbcType=VARCHAR}, 
+      #{city,jdbcType=VARCHAR}, #{region,jdbcType=VARCHAR}, #{star,jdbcType=INTEGER}, 
+      #{level,jdbcType=VARCHAR}, #{describe,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.straw.guide.model.SchoolEntity">
+    insert into l_school
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="schoolName != null">
+        school_name,
+      </if>
+      <if test="province != null">
+        province_,
+      </if>
+      <if test="city != null">
+        city_,
+      </if>
+      <if test="region != null">
+        region_,
+      </if>
+      <if test="star != null">
+        star_,
+      </if>
+      <if test="level != null">
+        level_,
+      </if>
+      <if test="describe != null">
+        describe_,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="schoolName != null">
+        #{schoolName,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null">
+        #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null">
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="region != null">
+        #{region,jdbcType=VARCHAR},
+      </if>
+      <if test="star != null">
+        #{star,jdbcType=INTEGER},
+      </if>
+      <if test="level != null">
+        #{level,jdbcType=VARCHAR},
+      </if>
+      <if test="describe != null">
+        #{describe,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.straw.guide.model.SchoolEntity">
+    update l_school
+    <set>
+      <if test="schoolName != null">
+        school_name = #{schoolName,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null">
+        province_ = #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null">
+        city_ = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="region != null">
+        region_ = #{region,jdbcType=VARCHAR},
+      </if>
+      <if test="star != null">
+        star_ = #{star,jdbcType=INTEGER},
+      </if>
+      <if test="level != null">
+        level_ = #{level,jdbcType=VARCHAR},
+      </if>
+      <if test="describe != null">
+        describe_ = #{describe,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.straw.guide.model.SchoolEntity">
+    update l_school
+    set school_name = #{schoolName,jdbcType=VARCHAR},
+      province_ = #{province,jdbcType=VARCHAR},
+      city_ = #{city,jdbcType=VARCHAR},
+      region_ = #{region,jdbcType=VARCHAR},
+      star_ = #{star,jdbcType=INTEGER},
+      level_ = #{level,jdbcType=VARCHAR},
+      describe_ = #{describe,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.straw.guide.model.SchoolEntity">
+    update l_school
+    set school_name = #{schoolName,jdbcType=VARCHAR},
+      province_ = #{province,jdbcType=VARCHAR},
+      city_ = #{city,jdbcType=VARCHAR},
+      region_ = #{region,jdbcType=VARCHAR},
+      star_ = #{star,jdbcType=INTEGER},
+      level_ = #{level,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="queryByParams" resultMap="ResultMapWithBLOBs">
+    SELECT s.* from l_school s LEFT JOIN l_specialty sp ON s.id = sp.school_id
+      WHERE 1=1
+      <where>
+          +
+      </where>
+      sp.type="理科" and s.level_ = "其他" and s.city_ = "淮南市"  and sp.category = "地质类"
+
+  </select>
+</mapper>

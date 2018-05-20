@@ -1,5 +1,6 @@
 package com.straw.guide.service.impl;
 
+import com.straw.guide.mapper.SchoolEntityMapper;
 import com.straw.guide.model.AdmissionCriteriaEntity;
 import com.straw.guide.model.SchoolEntity;
 import com.straw.guide.model.SchoolStandardEntity;
@@ -32,6 +33,9 @@ public class SchoolServiceImpl implements SchoolService {
 
     @Resource
     AdmissionCriteriaRepository admissionCriteriaRepository;
+
+    @Resource
+    SchoolEntityMapper schoolEntityMapper;
 
     @Override
     public void importData(List<ScoreInfo> temp) {
@@ -153,7 +157,8 @@ public class SchoolServiceImpl implements SchoolService {
 
     @Override
     public Page<SchoolEntity> queryByParams(Map<String, String> map) {
-        List schoolRepository.findByParams(map);
+        //List schoolRepository.findByParams(map);
+        Page<SchoolEntity> page = schoolEntityMapper.queryByParams(map);
         return null;
     }
 }
