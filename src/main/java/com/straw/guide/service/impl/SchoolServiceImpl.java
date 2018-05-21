@@ -1,15 +1,19 @@
 package com.straw.guide.service.impl;
 
+import com.github.pagehelper.PageHelper;
+import com.straw.guide.common.Page;
 import com.straw.guide.mapper.SchoolEntityMapper;
 import com.straw.guide.model.AdmissionCriteriaEntity;
 import com.straw.guide.model.SchoolEntity;
 import com.straw.guide.model.SchoolStandardEntity;
 import com.straw.guide.model.SpecialtyEntity;
-import com.straw.guide.repository.*;
+import com.straw.guide.repository.AdmissionCriteriaRepository;
+import com.straw.guide.repository.SchoolRepository;
+import com.straw.guide.repository.SchoolStandardRepository;
+import com.straw.guide.repository.SpecialtyRepository;
 import com.straw.guide.service.SchoolService;
 import com.straw.guide.utils.tmp.ScoreInfo;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -156,9 +160,10 @@ public class SchoolServiceImpl implements SchoolService {
     }
 
     @Override
-    public Page<SchoolEntity> queryByParams(Map<String, String> map) {
-        //List schoolRepository.findByParams(map);
-        Page<SchoolEntity> page = schoolEntityMapper.queryByParams(map);
-        return null;
+    public Page<SchoolEntity> queryByParams(Map<String, String> map, int page, int limit) {
+        PageHelper.startPage(page, limit);
+        List<SchoolEntity> list = schoolEntityMapper.queryByParams(map);
+        Page<SchoolEntity> pageList = new Page<>(list);
+        return pageList;
     }
 }

@@ -1,5 +1,7 @@
 package com.straw;
 
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import com.straw.guide.Application;
 import com.straw.guide.mapper.SchoolEntityMapper;
 import com.straw.guide.model.SchoolEntity;
@@ -12,6 +14,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 /**
@@ -41,7 +46,14 @@ public class guideTest {
     }
     @Test
     public void test2(){
-        SchoolEntity schoolEntity = schoolEntityMapper.selectByPrimaryKey("f1f25bbc-454c-4ec9-ab2f-f851784d273e");
-        System.out.println(schoolEntity.getSchoolName());
+        SchoolEntity select = schoolEntityMapper.selectByPrimaryKey("020c9414-35e9-410e-a131-8afabfae52dc");
+        System.out.println(select.getSchoolName());
+    }
+    @Test
+    public void test3(){
+        Map<String, String> map = new HashMap<>();
+        PageHelper.startPage(1, 10);
+        List<SchoolEntity> list = schoolEntityMapper.queryByParams(map);
+        System.out.println(((Page)list).getTotal());
     }
 }

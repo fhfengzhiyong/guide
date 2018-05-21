@@ -4,6 +4,7 @@ import com.straw.guide.model.SchoolEntity;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.data.domain.Page;
 
+import java.util.List;
 import java.util.Map;
 
 @Mapper
@@ -24,8 +25,9 @@ public interface SchoolEntityMapper {
 
     /**
      * 根据map 属性查询分页
+     *
      * @param map
      * @return
      */
-    Page<SchoolEntity> queryByParams(Map<String, String> map);
+    List<SchoolEntity> queryByParams(Map<String, String> map);
 }

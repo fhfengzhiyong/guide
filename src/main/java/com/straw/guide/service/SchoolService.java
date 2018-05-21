@@ -1,8 +1,8 @@
 package com.straw.guide.service;
 
+import com.straw.guide.common.Page;
 import com.straw.guide.model.SchoolEntity;
 import com.straw.guide.utils.tmp.ScoreInfo;
-import org.springframework.data.domain.Page;
 
 import java.util.List;
 import java.util.Map;
@@ -24,7 +24,9 @@ public interface SchoolService {
      * 根据map种存储条件查询
      *
      * @param map
+     * @param page
+     * @param limit
      * @return
      */
-    Page<SchoolEntity> queryByParams(Map<String, String> map);
+    Page<SchoolEntity> queryByParams(Map<String, String> map, int page, int limit);
 }

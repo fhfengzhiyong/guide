@@ -8,24 +8,24 @@ import java.util.List;
  * @date {DATE}
  */
 public class Result {
-    private int count;
+    private long count;
     private int code;
     private String msg;
     private List<Object> data;
 
-    public Result success(int count, List data) {
+    public static Result success(Page page) {
         Result result = new Result();
         result.setCode(0);
-        result.setCount(count);
-        result.setData(data);
+        result.setCount(page.getTotal());
+        result.setData(page.getList());
         return result;
     }
 
-    public int getCount() {
+    public long getCount() {
         return count;
     }
 
-    public void setCount(int count) {
+    public void setCount(long count) {
         this.count = count;
     }
 

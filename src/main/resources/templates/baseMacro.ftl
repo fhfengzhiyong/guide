@@ -30,11 +30,10 @@
 <div>
      <#nested>
 </div>
-<div>
-    <footer class="layui-">
-        <p>pwd</p>
-    </footer>
-</div>
+
+<blockquote class="layui-elem-quote layui-quote-nm" id="footer">straw @2018</blockquote>
+
+
 </body>
 </html>
 </#macro>
